@@ -5,8 +5,11 @@ import TodoList from "../todo-list";
 
 const TodoMain = () => {
   const [todo, setTodo] = useState<string>("");
+
+  const item = localStorage.getItem("todos");
+
   const [todos, setTodos] = useState<Todo[]>(
-    JSON.parse(localStorage.getItem("todos")) || '""'
+    typeof item === "string" ? JSON.parse(item) : []
   );
 
   const handleAdd = (e: React.FormEvent) => {
